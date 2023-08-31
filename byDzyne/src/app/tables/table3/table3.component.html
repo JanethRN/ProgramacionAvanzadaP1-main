@@ -1,0 +1,32 @@
+<table class="table">
+  <caption>Datos personales</caption>
+  <thead class="thead">
+    <tr class="tr">
+      <th class="th">Nombres</th>
+        <th>Apellidos</th>
+        <th>Cédula</th>
+        <th>Teléfono</th>
+        <th>Correo Electrónico</th>
+        <th>Fecha de Nacimiento</th>
+        <th>País de Residencia</th>
+        <th>Dirección</th>
+        <th>Sexo</th>
+      
+       
+      </tr>
+    </thead>
+    <tbody class="tbody">
+      <tr class="tr"  *ngFor="let form of formsInRevisionTwo">
+        <td>{{ form.name }}</td>
+        <td>{{ form.lastname }}</td>
+        <td>{{ form.ci }}</td>
+        <td>{{ form.telf }}</td>
+        <td>{{ form.email }}</td>
+        <td>{{ form.date }}</td>
+        <td>{{ form.country }}</td>
+        <td>{{ form.location }}</td>
+        <td>{{ form.gender }}</td>
+       
+      </tr>
+    </tbody>
+  </table>

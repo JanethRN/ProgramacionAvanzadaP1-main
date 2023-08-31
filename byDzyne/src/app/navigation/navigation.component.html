@@ -1,0 +1,73 @@
+
+<mat-toolbar>
+  <button mat-icon-button  
+   (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  <div>
+    <img class="logo" height="50" src="/assets/images/logo_2.png" alt="Logo">
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container >
+  <mat-sidenav class="mat-elevation-z8"  #sidenav="matSidenav" mode="side" opened>
+    <div class="layout-items">
+    <div>
+    <div style="display:flex; flex-direction:column; align-content:space-between">
+     
+      <div style="margin-bottom: 9px;"><em class="fa-solid fa-user fa-4x"></em></div>
+      
+      <div>Hi, {{ username }} </div>
+    </div>
+  
+    <mat-divider></mat-divider>
+    <button mat-button routerLink = "./formulario" class="menu-button">
+      <mat-icon>description</mat-icon>
+      <span>Formulario</span>
+    </button>
+    <button mat-button routerLink = "./table1" class="menu-button">
+      <mat-icon>table_chart</mat-icon>
+      <span>Pre-Registro</span>
+    </button>
+    <button mat-button routerLink = "./table2" class="menu-button">
+      <mat-icon>table_chart</mat-icon>
+      <span>Registro</span>
+    </button>
+    <button mat-button routerLink = "./table3" class="menu-button">
+      <mat-icon>table_chart</mat-icon>
+      <span>Usuarios</span>
+    </button>
+    </div>
+
+  <div>
+    <mat-divider></mat-divider>
+    <button mat-button 
+            class="menu-button"
+            (click) = "logout()"
+            >
+      <mat-icon>logout</mat-icon>
+      <span>Salir</span>
+    </button>
+  </div>
+</div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+
+
+
+

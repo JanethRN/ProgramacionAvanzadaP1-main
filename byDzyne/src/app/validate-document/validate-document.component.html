@@ -1,0 +1,87 @@
+<div class="container">
+    <!-- Inicio de encabezado -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <img class="logo" src="/assets/images/logo.png" alt="Logo">
+            <h2 class="mt-4">PRUEBA DE IDENTIDAD Y DE FECHA DE NACIMIENTO</h2>
+        </div>
+    </div>
+    <!-- Fin de encabezado -->
+
+    <!-- Inicio de contenido principal -->
+    <hr>
+    <div class="contenido-validacion">
+        <div class="datos-personales">
+            
+
+            <div class="form-group">
+                <label style="font-weight: bold" for="nombre">Nombres:</label><br>
+                <label for="nombre">{{ persona?.name }}</label>
+            </div><br>
+            <div class="form-group">
+                <label style="font-weight: bold" for="tipoIdentificacion">Apellidos:</label><br>
+                <label for="nombre">{{ persona?.lastname }}</label>
+            </div><br>
+            <div class="form-group">
+                <label style="font-weight: bold" for="numeroIdentificacion">Número de identificación:</label><br>
+                <label for="nombre">{{ persona?.ci }}</label>
+            </div><br>
+            <div class="form-group">
+                <label style="font-weight: bold" for="paisExpedidor">País expedidor:</label><br>
+                <label for="nombre">{{ persona?.country }}</label>
+            </div><br><br>
+            <div class="advise">
+                <h4>Instrucciones:</h4>
+                <h5>Su documento de identidad nacional no debe estar caducado.
+                    Toda la información debe estar clara, evite los reflejos del flash de su cámara o luz solar al
+                    momento de realizar la fotografía.
+                    No use gorras, gafas, mascarillas o algún objeto que cubra total o parcialmente su rostro.
+                </h5>
+            </div>
+            <div class="cargar-imagen">
+                <form (ngSubmit)="guardarSegundaImagen(persona)" [formGroup]="form">
+                    <div class="contenedor_foto">
+                        <label style="font-weight: bold;">Suba su foto como se muestra en la imagen de ejemplo.</label><br>
+                        <div>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="file-upload" (change)="handleFileInput($event)"
+                                    formControlName="imagVerification" accept="image/*">
+                                <label for="file-upload"></label>
+                                <div class="image-preview" *ngIf="previewImage">
+                                    <img [src]="previewImage" alt="Preview">
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            <small *ngIf="form.get('imagVerification')?.hasError('required') && form.get('imagVerification')?.touched">
+                                El campo es obligatorio
+                            </small>
+                        </p>
+                    </div>
+    
+                    <div class="mt-3">
+                        <p class="text-muted">Los formatos aceptados son .jpeg, .jpg, png</p>
+                        <p class="text-muted">El tamaño máximo de carga es de 3 MB</p>
+                    </div><br><br>
+    
+                    <div class="contenedor_boton">
+                        <button [disabled]="form.invalid || !imageValid" type="submit">
+                            <em class="fa fa-paper-plane"></em>ENVIAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+<!-- Fin de contenido principal -->
+
+<!-- Inicio de pie de página -->
+<hr>
+<div class="contenedor_boton_salir">
+    <button style="background-color: rgb(237, 111, 111);" type="button">
+        <em class="fa fa-sign-out"></em> SALIR
+    </button>
+</div>
+<!-- Fin de pie de página -->

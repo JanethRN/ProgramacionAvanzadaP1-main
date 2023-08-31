@@ -1,0 +1,205 @@
+<div class="contenedor">
+    <div>
+        <h1>Datos personales</h1>
+        <hr>
+        <form (ngSubmit)="save($event)" [formGroup]="form">
+            <div>
+                <div>
+                    <label>Nombres completos</label>
+                    <input type="text" formControlName="name">
+                    <p>
+                        <small *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+                            El campo es obligatorio
+                        </small>
+
+                        <small *ngIf="form.get('name')?.hasError('pattern') && form.get('name')?.touched">
+                            Debes ingresar tus dos nombres
+                        </small>
+                    </p>
+                </div>
+
+                <div>
+                    <label>Apellidos completos</label>
+                    <input type="text" formControlName="lastname">
+                    <p>
+                        <small *ngIf="form.get('lastname')?.hasError('required') && form.get('lastname')?.touched">
+                            El campo es obligatorio
+                        </small>
+
+                        <small *ngIf="form.get('lastname')?.hasError('pattern') && form.get('lastname')?.touched">
+                            Debes ingresar tus dos apellidos
+                        </small>
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <label>Numero de Cédula</label>
+                    <input type="text" formControlName="ci">
+                    <p>
+                        <small *ngIf="form.get('ci')?.hasError('required') && form.get('ci')?.touched">
+                            El campo es obligatorio
+                        </small>
+                        <small *ngIf="form.get('ci')?.hasError('cedulaInvalida') && form.get('ci')?.touched">
+                            {{ form.get('ci')?.getError('mensaje') }}
+                        </small>
+                        <small *ngIf="form.get('ci')?.hasError('cedulaExistente') && form.get('ci')?.touched">
+                            La cedula ingresada ya se encuentra registrada
+                        </small>
+                    </p>
+                </div>
+
+                <div>
+                    <label>Numero de teléfono</label>
+                    <input type="text" formControlName="telf">
+                    <p>
+                        <small *ngIf="form.get('telf')?.hasError('required') && form.get('telf')?.touched">
+                            El campo es obligatorio
+                        </small>
+
+                        <small *ngIf="form.get('telf')?.hasError('pattern') && form.get('telf')?.touched">
+                            Solo debes ingresar numeros
+                        </small>
+
+                        <small *ngIf="form.get('telf')?.hasError('minlength') && form.get('telf')?.touched">
+                            Necesitas 10 digitos
+                        </small>
+
+                        <small *ngIf="form.get('telf')?.hasError('maxlength') && form.get('telf')?.touched">
+                            Te pasaste de los 10 digitos
+                        </small>
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <label>Correo Electronico</label>
+                    <input type="text" formControlName="email">
+                    <p>
+                        <small *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+                            El campo es obligatorio
+                        </small>
+
+                        <small *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+                            Introduce un correo válido
+                        </small>
+
+                        <small *ngIf="form.get('email')?.hasError('pattern') && form.get('email')?.touched">
+                            Indistinto
+                        </small>
+                        <small *ngIf="form.get('email')?.hasError('correoExistente') && form.get('email')?.touched">
+                            El correo ingresado ya se encuentra registrado
+                        </small>
+                    </p>
+                </div>
+
+                <div>
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" formControlName="date">
+                    <p>
+                        <small *ngIf="form.get('date')?.hasError('required') && form.get('date')?.touched">
+                            El campo es obligatorio
+                        </small>
+                        <small
+                            *ngIf="form.get('date')?.hasError('fechaNacimientoInvalida') && form.get('date')?.touched">
+                            Debes tener al menos 18 años
+                        </small>
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <label>País de Residencia</label>
+                    <select formControlName="country">
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Perú">Perú</option>
+                        <option value="USA">Estados Unidos</option>
+                    </select>
+                    <p>
+                        <small *ngIf="form.get('country')?.hasError('required') && form.get('country')?.touched">
+                            El campo es obligatorio
+                        </small>
+                    </p>
+                </div>
+
+                <div class="genero">
+                    <label>Genero</label>
+                    <div class="contenedor_genero">
+                        <div>
+                            <label>Hombre</label>
+                            <input class="radio" type="radio" name="gender" formControlName="gender" value="Hombre">
+                        </div>
+                        <div>
+                            <label>Mujer</label>
+                            <input class="radio" type="radio" name="gender" formControlName="gender" value="Mujer">
+                        </div>
+                        <div>
+                            <label>Otro</label>
+                            <input class="radio" type="radio" name="gender" formControlName="gender" value="Otro">
+                        </div>
+                    </div>
+                    <p>
+                        <small *ngIf="form.get('gender')?.hasError('required') && form.get('gender')?.touched">
+                            El campo es obligatorio
+                        </small>
+                    </p>
+                </div>
+            </div>
+
+            <div class="condenedor_direccion">
+                <div>
+                    <label>Dirección</label>
+                    <textarea cols="25" rows="2" formControlName="location"></textarea>
+                    <p>
+                        <small *ngIf="form.get('location')?.hasError('required') && form.get('location')?.touched">
+                            El campo es obligatorio
+                        </small>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="contenedor_foto">
+                <div>
+                    <label>Suba la foto de la cédula.</label>
+                    <div>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="file-upload" (change)="handleFileInput($event)"
+                                formControlName="imag" accept="image/*">
+                            <label for="file-upload"></label>
+                            <div class="image-preview" *ngIf="previewImage">
+                                <img [src]="previewImage" alt="Preview">
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <small *ngIf="form.get('imag')?.hasError('required') && form.get('imag')?.touched">
+                            El campo es obligatorio
+                        </small>
+                    </p>
+                </div>
+            </div>
+
+            <div class="contenedor_capcha">
+                <div class="capcha">
+                    <label>Terminos y Condiciones</label>
+                    <re-captcha (resolved)="resolved($event)"
+                        siteKey="6LdXWWcmAAAAAEBzP7kGaFJvNOUw6wJL7RGc6o4e"></re-captcha>
+                </div>
+            </div>
+
+            <div class="contenedor_boton">
+                <button [disabled]="form.invalid || !captchaValid || !imageValid"  type="submit">
+                    <em class="fa fa-paper-plane"></em>ENVIAR</button>
+            </div>
+            <small>Asegúrate de llenar todos los campos para que el botón se habilite.</small>
+            <small>Recuerda ingresar bien tus datos personales, en caso de que se esté haciendo uso de estos
+                contáctanos: admin@espe.edu.ec.</small>
+        </form>
+        <hr>
+    </div>
+</div>
